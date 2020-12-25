@@ -1,11 +1,14 @@
 <idea-plugin>
     <id>com.github.syusuke.intellijrunconfig</id>
-    <name>intellij-run-config</name>
+    <name>Intellij-Run-Config</name>
     <vendor>syusuke</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.ultimate</depends>
+    <depends>com.jetbrains.restClient</depends>
+
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.syusuke.intellijrunconfig.services.MyApplicationService"/>
@@ -16,4 +19,16 @@
         <listener class="com.github.syusuke.intellijrunconfig.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+
+
+    <extensions defaultExtensionNs="com.intellij">
+        <configurationType implementation="com.github.syusuke.intellijrunconfig.DemoRunConfigurationType"/>
+    </extensions>
+
+    <actions>
+        <action id="HttpViewID" class="com.github.syusuke.intellijrunconfig.HttpViewID" text="HttpViewID"
+                description="HttpViewID">
+            <add-to-group group-id="GenerateGroup" anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>
